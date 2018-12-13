@@ -17,13 +17,13 @@ class Cart extends Component {
 
     componentDidMount() {
         let objects = ls.get('products')
-        if(objects){
-            let products = objects.map(product=>{
-                return <ListObject removeObject={()=>this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={product.props.itemQuantity} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
-             })
-             this.setState({
-                 products:products
-             })
+        if (objects) {
+            let products = objects.map(product => {
+                return <ListObject removeObject={() => this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={product.props.itemQuantity} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
+            })
+            this.setState({
+                products: products
+            })
         }
     }
 
@@ -31,24 +31,24 @@ class Cart extends Component {
         e.preventDefault()
     }
 
-    removeObject(e){
-        let products = this.state.products.map(product=>{
-            if(product.key==(e.productId?e.productId:e.props.productId)){ 
-                    let qty = product.props.itemQuantity
-                    let newObject = <ListObject removeObject={()=>this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty-=1} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
-                    this.props.adjustQuantity(newObject,'add')
-                    return newObject
-             }
-            else{
-                return <ListObject removeObject={()=>this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={product.props.itemQuantity} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
+    removeObject(e) {
+        let products = this.state.products.map(product => {
+            if (product.key == (e.productId ? e.productId : e.props.productId)) {
+                let qty = product.props.itemQuantity
+                let newObject = <ListObject removeObject={() => this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty -= 1} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
+                this.props.adjustQuantity(newObject, 'add')
+                return newObject
+            }
+            else {
+                return <ListObject removeObject={() => this.removeObject(product)} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={product.props.itemQuantity} img={product.props.img} key={product.props.productId} productId={product.props.productId} />
             }
         })
-        let newProducts = products.filter(product=>{
-            if(product.props.itemQuantity<1)return false
-            else{return true}
+        let newProducts = products.filter(product => {
+            if (product.props.itemQuantity < 1) return false
+            else { return true }
         })
         this.setState({
-            products :newProducts
+            products: newProducts
         })
     }
 
@@ -62,7 +62,7 @@ class Cart extends Component {
             products.forEach(product => {
                 if (product.key == item.productId) {
                     let qty = product.props.itemQuantity
-                    newArray.push(<ListObject removeObject={()=>this.removeObject(product)} itemTitle={item.itemTitle} itemPrice={item.itemPrice} itemQuantity={qty += 1} img={item.img} key={item.productId} productId={item.productId} />)
+                    newArray.push(<ListObject removeObject={() => this.removeObject(product)} itemTitle={item.itemTitle} itemPrice={item.itemPrice} itemQuantity={qty += 1} img={item.img} key={item.productId} productId={item.productId} />)
                 }
                 else {
                     newArray.push(product)
@@ -70,18 +70,17 @@ class Cart extends Component {
             })
             this.setState({
                 products: newArray
-            }, this.props.adjustQuantity(item,'remove'));
+            }, this.props.adjustQuantity(item, 'remove'));
         }
         else {
-            products.push(<ListObject removeObject={()=>this.removeObject(item)} img={item.img} itemTitle={item.itemTitle} itemPrice={item.itemPrice} itemQuantity={1} key={item.productId} productId={item.productId} />)
+            products.push(<ListObject removeObject={() => this.removeObject(item)} img={item.img} itemTitle={item.itemTitle} itemPrice={item.itemPrice} itemQuantity={1} key={item.productId} productId={item.productId} />)
             this.setState({
                 products
-            }, this.props.adjustQuantity(item,'remove'));
+            }, this.props.adjustQuantity(item, 'remove'));
         }
-
     }
 
-    save(){
+    save() {
         ls.set('products', this.state.products);
     }
 

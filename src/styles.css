@@ -46,6 +46,12 @@ body{
 
 }
 
+.loading{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .listTitle{
     margin-top: 5px;
     font-weight: 500;
@@ -110,6 +116,11 @@ body{
 }
 .flex{
     display: flex;
+}
+
+.itemsLoading{
+    min-width: 70vw;
+    margin:auto;
 }
 
 .cartContent{
