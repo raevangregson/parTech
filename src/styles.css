@@ -1,9 +1,16 @@
 body{
     font-family: 'Roboto', sans-serif;
-    font-weight: lighter;
+    font-weight: 300;
+}
+
+.mainContent{
+    margin-left: 10px;
+    margin-top:20px;
+    margin-right:10px;
 }
 
 .button{
+    cursor: pointer;
     padding: 7px;
     border:1px solid black;
     background-color: rgb(25, 175, 83);
@@ -12,3 +19,148 @@ body{
     font-weight: thin;
 }
 
+.itemContent{
+    width:200px;
+    margin-right: 35px;
+    margin-top: 17px;
+    padding: 7px;
+    border:2px solid black;
+    background-color: rgb(205, 205, 205);
+    display: inline-block ;
+    font-weight: thin;
+}
+
+.listDescription{
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: normal;
+}
+.list{
+    margin-bottom:5px;
+    overflow: scroll;
+}
+.listImage{
+    margin: 5px;
+    height: 50px;
+    width: 50px;
+
+}
+
+.listTitle{
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.listObjectContent{
+    min-height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    margin-top: 13px;
+    border:2px solid black;
+    background-color: rgb(205, 205, 205);
+}
+.listButton{
+    margin-right: 6px;
+    margin-top: 5px;
+    padding-left: 12px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    padding-right: 12px;
+    margin-left:auto;
+}
+
+.listGroupOne{
+    margin-top:5px;
+}
+
+.listGroup{
+    display:flex;
+    flex-direction:column;
+}
+.title{
+    font-weight: 500;
+    font-size:15px;
+}
+
+.items{
+    max-width: 1012px;
+}
+
+.largeText{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: right;
+    color:rgb(252, 13, 27);
+    padding-bottom:5px;
+    padding-top:15px;
+    padding-right: 5px;
+}
+
+.itemGroup{
+    text-align: right
+}
+
+.description{
+    padding-top: 5px;
+    padding-left: 25px;
+    font-size: 14px
+}
+.flex{
+    display: flex;
+}
+
+.cartContent{
+    min-height: 300px;
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    margin-left: auto;
+    border:2px solid  rgb(25, 175, 83);
+    background-color: rgb(234, 240, 222);
+    width:269px;
+    min-width: 269px;
+    max-height: 500px;
+}
+.checkoutButton{
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 19px;
+    margin-left: auto;
+}
+
+.largeCartGroup{
+    min-height: fit-content;
+    margin-right: 15px;
+    margin-top: auto;
+    display:flex;
+    flex-direction: column;
+}
+
+.cartGroup{
+    display: flex;
+    margin-top: 10px;
+    margin-right: 5px;
+    text-align: center;
+    min-height: contents;
+}
+.total{
+    padding-left: 16px;
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: 500;
+    color:rgb(25, 175, 83);
+}
+.marginLeft{
+    display: inline-block;
+    font-weight: 600;
+    font-size: 30px;
+    color:rgb(252, 13, 27);
+    margin-left: auto;
+}
+
+.linkDisplay{
+    display: block;
+}
