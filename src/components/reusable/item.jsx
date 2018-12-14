@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Button from './button.jsx';
+import {
+  isMobile
+} from "react-device-detect";
 
 class Item extends Component {
   constructor(props) {
@@ -12,12 +16,13 @@ class Item extends Component {
 
   render() {
     return (
-      <div className="itemContent" draggable onDragStart={(e) => this.onDragStart(e)}  >
+      <div id={this.props.productId} className="itemContent" draggable onDragStart={(e) => this.onDragStart(e)}  >
         <div className="flex">
           <img src={this.props.img} draggable="false" />
           <div className="itemGroup">
             <div className="title"> {this.props.itemTitle}</div>
             <div className="description">{this.props.itemQuantity} in Stock</div>
+            {isMobile?<Button buttonClass='listButton'  click={()=>this.props.add(this.props.productId)} text='Add'/>:null}
           </div>
         </div>
         <div className="largeText">${this.props.itemPrice}</div>

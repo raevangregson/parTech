@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 2,
+    color: 'black'
   },
 });
 
@@ -13,7 +14,7 @@ function CircularIndeterminate(props) {
   const { classes } = props;
   return (
     <div className={'loading'}>
-      <CircularProgress className={classes.progress} color="black" />
+      <CircularProgress className={classes.progress}  />
       "Loading Inventory"
     </div>
   );

@@ -13,11 +13,13 @@ class App extends Component {
 
     this.state = {
       inventory: null,
-      loading: true
+      loading: true,
+      mobile:[]
     }
     this.fetchData = this.fetchData.bind(this);
     this.createProducts = this.createProducts.bind(this);
     this.adjustQuantity = this.adjustQuantity.bind(this)
+    this.add = this.add.bind(this)
   }
 
   componentWillMount() {
@@ -46,10 +48,10 @@ class App extends Component {
       if (product.key == (action == 'remove' ? item.productId : item.key)) {
         let qty = product.props.itemQuantity
         if (action == "remove") {
-          if (qty - 1 != 0) newArray.push(<Item itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty -= 1} img={product.props.img} productId={product.props.productId} key={product.props.productId} />)
+          if (qty - 1 != 0) newArray.push(<Item add={this.add} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty -= 1} img={product.props.img} productId={product.props.productId} key={product.props.productId} />)
         }
         else {
-          newArray.push(<Item itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty += 1} img={product.props.img} productId={product.props.productId} key={product.props.productId} />)
+          newArray.push(<Item add={this.add} itemTitle={product.props.itemTitle} itemPrice={product.props.itemPrice} itemQuantity={qty += 1} img={product.props.img} productId={product.props.productId} key={product.props.productId} />)
         }
       }
       else {
@@ -64,7 +66,7 @@ class App extends Component {
   createProducts(products) {
     let inventory = [];
     products.forEach(product => {
-      if (product.quantity_in_stock[0] > 0) inventory.push(<Item productId={product.product_id[0]} key={product.product_id[0]} itemPrice={product.unit_price[0]} itemQuantity={product.quantity_in_stock[0]} itemTitle={product.product_name[0]} img={"http://www.partechgss.com" + product.product_img[0].trim()} />)
+      if (product.quantity_in_stock[0] > 0) inventory.push(<Item add={this.add} productId={product.product_id[0]} key={product.product_id[0]} itemPrice={product.unit_price[0]} itemQuantity={product.quantity_in_stock[0]} itemTitle={product.product_name[0]} img={"http://www.partechgss.com" + product.product_img[0].trim()} />)
     })
     this.setState({
       inventory,
@@ -72,6 +74,12 @@ class App extends Component {
     })
   }
 
+  add(id){
+    let item = this.state.inventory.filter(obj=>obj.key==id)
+    this.setState({
+      mobile:item
+    })
+  }
 
   render() {
     return (
@@ -81,7 +89,7 @@ class App extends Component {
           <div className={this.state.loading?'itemsLoading':'items'}>
             {this.state.loading?<Loader/>:this.state.inventory}
           </div>
-          <Cart adjustQuantity={this.adjustQuantity} />
+          <Cart mobile={this.state.mobile} adjustQuantity={this.adjustQuantity} />
         </div>
       </div>
 

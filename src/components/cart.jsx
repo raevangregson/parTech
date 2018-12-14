@@ -27,6 +27,12 @@ class Cart extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.mobile != this.props.mobile){
+            this.onDrop(nextProps.mobile)
+        }
+    }
+
     onDragOver(e) {
         e.preventDefault()
     }
@@ -53,8 +59,14 @@ class Cart extends Component {
     }
 
     onDrop(e) {
-        let item = e.dataTransfer.getData("items")
-        item = JSON.parse(item)
+        let item;
+        if(Array.isArray(e)){
+            item = {'img':e[0].props.img,'productId':e[0].props.productId,'itemTitle':e[0].props.itemTitle,'itemPrice':e[0].props.itemPrice, 'itemQuantity':e[0].props.itemQuantity}
+        }
+        else{
+            item = e.dataTransfer.getData("items")
+            item = JSON.parse(item)
+        }
         let products = [...this.state.products]
         let exists = products.filter(product => item.productId == product.key)
         if (exists.length > 0) {
