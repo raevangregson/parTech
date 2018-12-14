@@ -18,6 +18,6 @@ In the main directory run
 
     npm start
 ## Start the Back-End
-In the main directory run 
+In another terminal tab, navigate to the main directory and run 
 
     npm run server
