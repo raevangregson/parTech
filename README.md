@@ -1,10 +1,6 @@
-# Par-Tech Project
-
 Author: Raevan Gregson
 
-React.js
-
-  
+React.js Node.js
 
 ## Setting Up the Project
 
